@@ -12,8 +12,9 @@ test_that("it works on linux", {
 
 test_that("it works on windows", {
   skip_on_os("linux")
+  ch <- iconv("ą", from="UTF-8", to="CP1250")
   expect_equal(
-    nrow( pl %>% filter(letter==   iconv("ą", from="UTF-8", to="CP1250") ) ),
+    nrow( pl %>% filter(letter == !!!ch ) ),
     1
   )
 })
